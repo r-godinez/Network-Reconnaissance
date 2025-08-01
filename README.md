@@ -1,45 +1,95 @@
-# Network-Reconnaissance
-for educational purposes
-Network Security Scanner for DoD Cybersecurity Analysis
-I've built you a comprehensive network security scanner that covers the essential techniques you'll need as a DoD Cybersecurity Forensics Analyst. Here's what this tool does:
-Key Features:
-1. Host Discovery
+# 🛡️ Network Security Scanner
 
-Ping sweep and port probing to identify live hosts
-Essential for network reconnaissance
+A comprehensive **Network Security Scanner** built in Go, designed to demonstrate essential techniques you'll need as a **Cybersecurity Forensics Analyst**. This tool mimics key behaviors of tools like `nmap`, with custom implementations for scanning and enumeration.
 
-2. Port Scanning
+---
 
-Multi-threaded TCP port scanning
-Focuses on common vulnerable ports (21, 22, 23, 25, 53, 80, 443, etc.)
-Similar to nmap -sT but written in Go
+## 🚀 Key Features
 
-3. Service Detection
+### 🔍 1. Host Discovery
 
-Identifies services running on open ports
-Version detection for common services (Apache, nginx, OpenSSH, etc.)
+- Performs **ping sweeps** and **port probes** to identify live hosts.
+- Foundational for network reconnaissance.
 
-4. Banner Grabbing
+### 🚪 2. Port Scanning
 
-Collects service banners for fingerprinting
-Critical for vulnerability assessment
+- **Multi-threaded TCP port scanning** for fast enumeration.
+- Targets common vulnerable ports: `21`, `22`, `23`, `25`, `53`, `80`, `443`, etc.
+- Similar in behavior to `nmap -sT`, but fully written in **Go**.
 
-5. HTTP Enumeration
+### 🧠 3. Service Detection
 
-Analyzes web servers and applications
-Extracts titles, headers, server information
-Identifies potential attack surfaces
+- Identifies running services on open ports.
+- Performs **version detection** for services like Apache, nginx, OpenSSH, etc.
 
-6. TLS/SSL Analysis
+### 🪪 4. Banner Grabbing
 
-Checks certificate validity and configuration
-Identifies weak ciphers and protocol versions
-Flags security vulnerabilities
+- Collects service banners for **fingerprinting**.
+- Useful in identifying vulnerabilities and misconfigurations.
 
-# How to use
-## Compile the scanner
+### 🌐 5. HTTP Enumeration
+
+- Inspects web servers and web apps.
+- Extracts:
+  - Page titles
+  - HTTP headers
+  - Server info
+- Helps uncover potential attack surfaces.
+
+### 🔐 6. TLS/SSL Analysis
+
+- Evaluates certificate validity and HTTPS configuration.
+- Flags:
+  - Weak ciphers
+  - Outdated protocol versions
+  - Security misconfigurations
+
+---
+
+## ⚙️ Setup
+
+### 1. Initialize the Go Module
+
+```bash
+go mod init network-scanner
+go build -o scanner network-scanner.go
+# or if your entry file is named scanner.go
 go build -o scanner scanner.go
+```
 
-## Scan a target (use only on authorized networks!)
+### 2. Compile the Scanner
+
+```bash
+go build -o scanner network-scanner.go
+# or if your entry file is named scanner.go
+go build -o scanner scanner.go
+```
+
+## 🧪 How to Use
+
+- ⚠️ Use this tool only on networks you own or are authorized to scan.
+
+### Scan a Target
+
+```bash
 ./scanner scanme.nmap.org
 ./scanner 192.168.1.1
+```
+
+### Scan Localhost
+
+```bash
+go run scanner.go localhost
+```
+
+### Find Your Router IP (macOS/Linux)
+
+```bash
+netstat -rn | grep default
+```
+
+### Try Scanning Your Router (if you own it)
+
+```bash
+go run scanner.go 192.168.1.1
+```
